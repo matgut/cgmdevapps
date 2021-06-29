@@ -20,7 +20,9 @@
             </svg>
             <span class="ml-1">{{ $movie['vote_average'] * 10 . '%' }}</span>
             <span class="mx-2">|</span>
-            <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, Y') }}</span>
+            @if(array_key_exists('release_date',$movie))
+                <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, Y') }}</span>
+            @endif
         </div>
         <div class="text-gray-400 text-sm">
             @foreach ($movie['genre_ids'] as $genre)
