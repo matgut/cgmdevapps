@@ -4,12 +4,12 @@
     <div class="movie-info border-b border-gray-800">
         <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row">
             <div class="flex-none">
-                <img src="{{ 'https://image.tmdb.org/t/p/w500/' . $movieDetails['poster_path'] }}" alt="sonic"
+                <img src="{{ $movie['poster_path'] }}" alt="sonic"
                     class="w-64 md:w-96">
             </div>
             <div class="md:ml-24">
                 <h2 class="text-4xl font-semibold">
-                    {{ $movieDetails['title'] }}
+                    {{ $movie['title'] }}
                 </h2>
                 <div class="flex flex-wrap items-center text-gray-400 text-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-yellow-300 w-4" fill="none"
@@ -17,18 +17,16 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                     </svg>
-                    <span class="ml-1">{{ $movieDetails['vote_average'] * 10 . '%' }}</span>
+                    <span class="ml-1">{{ $movie['vote_average'] }}</span>
                     <span class="mx-2">|</span>
-                    <span>{{ \Carbon\Carbon::parse($movieDetails['release_date'])->format('M d, Y') }}</span>
+                    <span>{{ $movie['release_date'] }}</span>
                     <span class="mx-2">|</span>
                     <span>
-                        @foreach ($movieDetails['genres'] as $genre)
-                            {{ $genre['name'] }}@if (!$loop->last),@endif
-                        @endforeach
+                        {{ $movie['genres'] }}
                     </span>
                 </div>
                 <p class="text-gray-300 mt-8">
-                    {{ $movieDetails['overview'] }}
+                    {{ $movie['overview'] }}
                 </p>
 
                 <div class="mt-12">
@@ -36,8 +34,7 @@
                         Featured Cast
                     </h4>
                     <div class="flex mt-4">
-                        @foreach ($movieDetails['credits']['crew'] as $crew)
-                            @if ($loop->index < 2)
+                        @foreach ($movie['crew'] as $crew)
                                 <div class="mr-8">
                                     <div>
                                         {{ $crew['name'] }}
@@ -46,17 +43,16 @@
                                         {{ $crew['job'] }}
                                     </div>
                                 </div>
-                            @endif
                         @endforeach
                     </div>
                 </div>
 
                 <div x-data="{ isOpen: false }">
-                    @if (count($movieDetails['videos']['results']) > 0)
+                    @if (count($movie['videos']['results']) > 0)
                     <div class="mt-12">
                         <button 
                             @click="isOpen = true"
-                            href="https://youtube.com/watch?v={{ $movieDetails['videos']['results'][0]['key'] }}"
+                            href="https://youtube.com/watch?v={{ $movie['videos']['results'][0]['key'] }}"
                             class="flex inline-flex items-center bg-yellow-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-yellow-600 transition ease-in-out duration-150"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6" fill="none" viewBox="0 0 24 24"
@@ -87,7 +83,7 @@
                                 <div class="modal-body px-8 py-8">
                                     <div class="responsive-container overflow-hidden relative" style="padding-top: 56.25%">
                                         <iframe class="responsive-iframe absolute top-0 left-0 w-full h-full"
-                                            src="https://www.youtube.com/embed/{{ $movieDetails['videos']['results'][0]['key'] }}"
+                                            src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}"
                                             style="border:0;" allow="autoplay; encrypted-media" allowfullscreen>
                                         </iframe>
                                     </div>
@@ -106,8 +102,7 @@
                 Cast
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                @foreach ($movieDetails['credits']['cast'] as $cast)
-                    @if ($loop->index < 15)
+                @foreach ($movie['cast'] as $cast)
                         <div class="mt-8">
                             <a href="#">
                                 <img src="{{ 'https://image.tmdb.org/t/p/w300/' . $cast['profile_path'] }}" alt="actor"
@@ -120,7 +115,6 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
                 @endforeach
             </div>
         </div>
@@ -130,18 +124,18 @@
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                @foreach ($movieDetails['images']['backdrops'] as $image)
-                    <div class="mt-8">
-                        <a
-                            @click.prevent="
-                                isOpen = true
-                                image='{{ 'https://image.tmdb.org/t/p/original/'.$image['file_path'] }}'
-                            "
-                            href="#"
-                        >
-                            <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$image['file_path'] }}" alt="image_movie" class="hover:opacity-75 transition ease-in-out duration-150">
-                        </a>
-                    </div>
+                @foreach ($movie['images'] as $image)
+                        <div class="mt-8">
+                            <a
+                                @click.prevent="
+                                    isOpen = true
+                                    image='{{ 'https://image.tmdb.org/t/p/original/'.$image['file_path'] }}'
+                                "
+                                href="#"
+                            >
+                                <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$image['file_path'] }}" alt="image_movie" class="hover:opacity-75 transition ease-in-out duration-150">
+                            </a>
+                        </div>
                 @endforeach
             </div>
 
