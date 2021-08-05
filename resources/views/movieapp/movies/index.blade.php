@@ -1,4 +1,4 @@
-@extends('movieapp.nav')
+@extends('movieapp.movies.nav')
 
 @section('content-app')
     <div class="container mx-auto px-4 pt-16 ">

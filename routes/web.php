@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\MainController@index')->name('cgmdev.welcome');
-Route::get('/movie-app', 'App\Http\Controllers\MoviesController@index')->name('cgmdev.movieapp.index');
-Route::get('/movie/{movie}', 'App\Http\Controllers\MoviesController@show')->name('cgmdev.movieapp.show');
+
+
+
+//Movie App
+
+//Movies
+Route::get('/movie-app', 'App\Http\Controllers\MovieApp\MoviesController@index')->name('cgmdev.movieapp.movies.index');
+Route::get('/movie-app/movie/{movie}', 'App\Http\Controllers\MovieApp\MoviesController@show')->name('cgmdev.movieapp.movies.show');
+//Actors
+Route::get('/movie-app/actors', 'App\Http\Controllers\ActorsController@show')->name('cgmdev.movieapp.actors.index');
+Route::get('/movie-app/actors/{movie}', 'App\Http\Controllers\ActorsController@show')->name('cgmdev.movieapp.actors.show');
+
+
+//Weather App
+Route::get('/weather-app/{cityName}', 'App\Http\Controllers\WeatherApp\WeatherController@index')->name('cgmdev.weatherapp.index');
+//Route::get('/weather-app/wheather/{cityName}', 'App\Http\Controllers\WeatherApp\WeatherController@index')->name('cgmdev.weatherapp.show');

@@ -1,12 +1,12 @@
 <div class="mt-8">
-    <a href="{{ route('cgmdev.movieapp.show', $movie['id']) }}">
+    <a href="{{ route('cgmdev.movieapp.movies.show', $movie['id']) }}">
             <img src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="movie"
                 class="hover:opacity-75 transition ease-in-out duration-150">
     </a>
     <div class="mt-2">
-        <a href="{{ route('cgmdev.movieapp.show', $movie['id']) }}"
+        <a href="{{ route('cgmdev.movieapp.movies.show', $movie['id']) }}"
             class="text-lg mt-2 hover:text-gray:300">{{ $movie['title'] }}</a>
-        <div class="flex items-center text-gray-400 text-sm mt-1">
+        <div class="flex items-center text-sm mt-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-yellow-300 w-4" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -18,7 +18,7 @@
                 <span>{{ $movie['release_date']}}</span>
             @endif
         </div>
-        <div class="text-gray-400 text-sm">
+        <div class="text-sm">
            {{ $movie['genres'] }}
         </div>
     </div>

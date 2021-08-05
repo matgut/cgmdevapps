@@ -1,4 +1,4 @@
-@extends('movieapp.nav')
+@extends('movieapp.movies.nav')
 
 @section('content-app')
     <div class="movie-info border-b border-gray-800">
@@ -53,7 +53,7 @@
                         <button 
                             @click="isOpen = true"
                             href="https://youtube.com/watch?v={{ $movie['videos']['results'][0]['key'] }}"
-                            class="flex inline-flex items-center bg-yellow-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-yellow-600 transition ease-in-out duration-150"
+                            class="flex inline-flex items-center rounded font-semibold px-5 py-4 custom-button transition ease-in-out duration-150"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -69,12 +69,11 @@
                     </div>
                     @endif
 
-                    <div style="background-color: rgba(0, 0, 0, .5);"
-                         class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
+                    <div class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
                          x-show.transition.opacity="isOpen"
                     >
                         <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
-                            <div class="bg-gray-900 rounded">
+                            <div class="modal-custom rounded">
                                 <div class="flex justify-end pr-4 pt-2">
                                     <button @click="isOpen = false" @keydown.escape.window="isOpen = false"
                                         class="text-3xl leading-none hover:text-gray-300">&times;

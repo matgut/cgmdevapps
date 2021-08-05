@@ -32,6 +32,12 @@ return [
 
     'tmdb' => [
         'token' => env('TMDB_TOKEN'),
+        'baseUrl ' => env('TMDB_BASE_URL'),
     ],
+
+    'openWeather' => [
+        'token' => env('OPENWEATHER_TOKEN'),
+        'baseUrl' => env('OPENWEATHER_BASE_URL')
+    ]
 
 ];

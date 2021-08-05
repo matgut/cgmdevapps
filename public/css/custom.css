@@ -1,0 +1,31 @@
+body {
+    background-color: #0F292f;
+    color: #CCCCCC;
+}
+
+.custom-button{
+    background-color: #3a6178;
+    color: #DEF2F1;
+}
+
+.custom-button:hover {
+    background-color: #14A098;
+    color: #DEF2F1;
+}
+
+.text-custom{
+    color:#3a6178;
+    font-weight: 600;
+}
+
+.modal-custom{
+    background-color: #3a6178;
+}
+
+.input-custom{
+    color: #0F292f;
+}
+
+.card-custom{
+    background-color: #6496b4;
+}
