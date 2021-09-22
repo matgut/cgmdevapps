@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MovieApp;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use App\ViewModels\MoviesViewModel;
 use App\ViewModels\MovieViewModel;
@@ -60,4 +61,6 @@ class MoviesController extends Controller
         return view('movieapp.movies.show',$viewModel);
 
     }
+
+    
 }

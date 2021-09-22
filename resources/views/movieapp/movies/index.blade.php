@@ -5,9 +5,9 @@
         {{-- <div class="carousel relative shadow-2xl bg-gray-900">
             <div class="carousel-inner relative overflow-hidden w-full">
               <!--Slide 1-->
-              @foreach ($popularMovies as $key => $popularMovie )
+              @foreach ($popularMovies as $key => $popularMovie)
               {{dd(end($popularMovies)['id'],$key,$popularMovie)}}
-                @if($loop->first)
+                @if ($loop->first)
                     <input class="carousel-open" type="radio" id="carousel-{{$key}}" name="carousel" aria-hidden="true" hidden="" checked="checked">
                 @else
                     <input class="carousel-open" type="radio" id="carousel-{{$key}}" name="carousel" aria-hidden="true" hidden="">
@@ -20,18 +20,18 @@
                         
                     </div>
                 </div>
-                {{-- @if(prev($popularMovies) == false)
+                {{-- @if (prev($popularMovies) == false)
                     <label for="carousel-{{count($popularMovies) - 1}}" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
                 @else
                     <label for="carousel-{{prev($popularMovies)['id']}}" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
                 @endif
 
-                @if(next($popularMovies) == false)
+                @if (next($popularMovies) == false)
                     <label for="carousel-0" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">›</label>
                 @else
                     <label for="carousel-{{next($popularMovies)['id']}}" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">›</label>
                 @endif 
-                @if($loop->first)
+                @if ($loop->first)
                     <label for="carousel-{{end($popularMovie)}}" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
                 @endif
                 <label for="carousel-{{$key}}" class="next control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">›</label>
@@ -45,13 +45,51 @@
                 
             </div>
         </div> --}}
+
+        <div class="carousel relative rounded relative overflow-hidden shadow-xl">
+            <div class="carousel-inner relative overflow-hidden w-full">
+                <!--Slide 1-->
+                @foreach ($popularMovies as $movie)
+                <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
+                checked="checked">
+                <div class="carousel-item absolute opacity-0 bg-center"
+                    style="height:500px; background-image: url({{$movie['poster_path']}})">
+
+                </div>
+                <label for="carousel-3"
+                    class="control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto flex justify-center content-center">
+                    <i class="fas fa-angle-left mt-3"></i>
+                </label>
+                <label for="carousel-2"
+                    class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">
+                    <i class="fas fa-angle-right mt-3"></i>
+                </label>
+                
+                <!-- Add additional indicators for each slide-->
+                <ol class="carousel-indicators">
+                    <li class="inline-block mr-3">
+                    <label for="carousel-1"
+                        class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                    </li>
+                    <li class="inline-block mr-3">
+                    <label for="carousel-2"
+                        class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                    </li>
+                    <li class="inline-block mr-3">
+                    <label for="carousel-3"
+                        class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                    </li>
+                </ol>
+                @endforeach
+            </div>
+        </div>
         <div class="popular-movies">
             <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">
                 Popular Movies
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach ($popularMovies as $movie)
-                    <x-movie-card :movie="$movie"/>
+                    <x-movie-card :movie="$movie" />
                 @endforeach
             </div>
         </div>

@@ -7,7 +7,10 @@
     <title>CGMDEV Apps</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <!--alpine JS-->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/67ca50a492.js" crossorigin="anonymous"></script>
     @livewireStyles
 </head>
 <body class="font-sans">

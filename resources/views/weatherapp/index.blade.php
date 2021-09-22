@@ -25,7 +25,7 @@
         <div class="font-bold text-xl mb-2">{{ $weather['clima']}}</div>
         <div class="font-bold text-xl mb-2">Temp Actual: {{ $weather['temp_actual']}} &deg;C</div>
         <div class="font-bold text-xl mb-2">Temp Min: {{ $weather['temp_min']}}&deg;C || Temp Max: {{ $weather['temp_max']}}&deg;C</div>
-        <div class="font-bold text-xl mb-2"></i>{{ $weather['ciudad']}} , {{ $weather['pais']}}</div>
+        <div class="font-bold text-xl mb-2">{{ $weather['ciudad']}} , {{ $weather['pais']}}</div>
       </div>
     </div>
 </div>
